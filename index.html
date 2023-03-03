@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- this is for users navigating the page with the 'tab' button. When clicked, it will skip over the navigation and move the user  to the main content on the page. this is provided so users who navigate the page via keyboard do not have to tab through the navigation on every page  -->
+    <a class="skip-to-content" href="#about">Skip to Content</a>
+    <!-- --------------------- -->
+    <!-- Header -->
+    <!-- --------------------- -->
+    <header id="top">
+      <div class="container">
+        <div class="logo">Name</div>
+        <nav>
+          <ul class="nav-list" data-visible="false">
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Resume</a></li>
+          </ul>
+          <button type="button" class="menu-button">
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <!-- --------------------- -->
+    <!-- About -->
+    <!-- --------------------- -->
+    <section id="about">
+      <div class="about container">
+        <h1>Your Name</h1>
+        <p class="title">Full-Stack Developer</p>
+        <p class="desc">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non sapiente quae qui
+          rerum ipsa, eaque architecto dolore nesciunt recusandae aut, iure, atque odio
+          blanditiis.
+        </p>
+        <a href="#" class="btn">Contact</a>
+      </div>
+    </section>
+    <!-- --------------------- -->
+    <!-- Portfolio -->
+    <!-- --------------------- -->
+    <section id="portfolio">
+      <div class="container">
+        <h2>Portfolio</h2>
+        <!-- portfolio-item -->
+        <div class="portfolio-item">
+          <img src="./space.jpg" alt="" />
+          <div class="content">
+            <h3>Item 1</h3>
+            <p class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam totam at,
+              vero eos ad facere quo!
+            </p>
+            <ul class="tech">
+              <li>html</li>
+              <li>css</li>
+              <li>javascript</li>
+            </ul>
+            <a href="#">Live Site</a>
+          </div>
+        </div>
+        <!-- portfolio-item -->
+        <div class="portfolio-item">
+          <img src="./space.jpg" alt="" />
+          <div class="content">
+            <h3>Item 2</h3>
+            <p class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam totam at,
+              vero eos ad facere quo!
+            </p>
+            <ul class="tech">
+              <li>html</li>
+              <li>css</li>
+              <li>javascript</li>
+            </ul>
+            <a href="#">Live Site</a>
+          </div>
+        </div>
+        <!-- portfolio-item -->
+        <div class="portfolio-item">
+          <img src="./space.jpg" alt="" />
+          <div class="content">
+            <h3>Item 3</h3>
+            <p class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam totam at,
+              vero eos ad facere quo!
+            </p>
+            <ul class="tech">
+              <li>html</li>
+              <li>sass</li>
+              <li>javascript</li>
+              <li>react</li>
+            </ul>
+            <a href="#">Live Site</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- --------------------- -->
+    <!-- Footer -->
+    <!-- --------------------- -->
+    <footer>
+      <div class="container">
+        <div class="copy">&copy; My Name</div>
+        <div class="site-title"><a href="#top">Back to Top</a></div>
+      </div>
+    </footer>
+  </body>
+</html>

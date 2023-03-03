@@ -1,0 +1,443 @@
+/* import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+:root {
+  --fs-h1: clamp(2.25rem, 5vw, 5rem);
+  --fs-h2: clamp(2rem, 4.25vw, 4rem);
+  --fs-h3: clamp(1.5rem, 2.75vw, 3.25rem);
+  /* add a pirmary accent color */
+  --primary: rgb(12, 117, 222);
+  --secondary: rgb(9, 92, 175);
+  /* create two border-radius variables, one for button & one for images */
+  --br-img: 3px;
+  --br-button: 4px;
+}
+
+/* reset box-sizing to border-box */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* add smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* remove body margins, use imported font, set font-size to 15px */
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+}
+
+/* reduce line-height on larger headings */
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+/* remove margins & padding from headings, lists, paragraphs */
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* remove underline from links */
+a {
+  text-decoration: none;
+}
+
+/* set up container for small screen sizes, make sure it's centered in the page */
+.container {
+  width: calc(100% - 4rem);
+  margin-inline: auto;
+}
+
+/* add a breakpoint at 54rem, change container width for larger screen sizes */
+@media (min-width: 54rem) {
+  .container {
+    width: min(80rem, 100% - 6rem);
+  }
+}
+
+/* --------------------------- */
+/* Accessibility */
+/* --------------------------- */
+
+/* skip to content link */
+
+.skip-to-content {
+  position: absolute;
+  z-index: 9999;
+  background-color: transparent;
+  color: black;
+  margin-inline: auto;
+  font-size: 0.875rem;
+  transform: translateY(-150%);
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+  transition: transform 250ms ease-in;
+  background-color: transparent;
+  color: black;
+}
+
+/* --------------------------- */
+/* Typography */
+/* --------------------------- */
+
+/* use the H1-H3 font size variables in the root */
+
+h1 {
+  font-size: var(--fs-h1);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+}
+
+/* --------------------------- */
+/* Header */
+/* --------------------------- */
+
+/* turn header into a flexbox, position logo & nav list on opposite sides of the page, add top/bottom padding & a border on top */
+header {
+  background-color: rgb(237, 243, 245);
+  border-top: solid var(--secondary) 5px;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 20px;
+  gap: 30px;
+}
+
+/* turn navigation list into a flexbox, remove list style */
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+/* remove default styling from navigation links */
+.nav-list a {
+  color: black;
+}
+
+/* style hover & focus states for navigation links */
+.nav-list a:hover,
+.nav-list a:focus {
+  color: var(--secondary);
+}
+
+/* style the last navigation item to look like a button, use the button border-radius variable create in the root, add a transition for bg color (will be applied when switching from default to a hover/focus state */
+.nav-list li:last-of-type a {
+  display: inline-block;
+  color: white;
+  background-color: var(--secondary);
+  border: solid var(--secondary) 2px;
+  border-radius: var(--br-button);
+  padding: 8px 18px;
+  transition: background-color 0.2s;
+}
+
+/* style hover & focus states for the last navigation item */
+.nav-list li:last-of-type a:hover,
+.nav-list li:last-of-type a:focus {
+  background-color: white;
+  color: var(--secondary);
+}
+
+/* style the logo/name (larger font size, higher font weight */
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* --------------------------- */
+/* Mobile Navigation */
+/* --------------------------- */
+
+/* hide button by default, position on top of all other elements */
+
+.menu-button {
+  z-index: 9999;
+  position: relative;
+  cursor: pointer;
+  display: none;
+  border: none;
+  background: transparent;
+}
+
+/* breakpoint for styling on mobile */
+@media (max-width: 46rem) {
+  /* show button, alter cursor, add padding */
+  .menu-button {
+    display: block;
+    padding: 14px 2px;
+  }
+
+  /* format nav list */
+  .nav-list {
+    display: none;
+
+    background-color: rgb(237, 243, 245);
+    position: fixed;
+    inset: 0;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  /* change nav list display value based on data attribute */
+  .nav-list[data-visible='true'] {
+    display: flex;
+  }
+
+  /* set button span to pos relative */
+  .menu-button span {
+    position: relative;
+  }
+
+  /* create before & after pseudo elements */
+  .menu-button span::before,
+  .menu-button span::after {
+    position: absolute;
+    content: '';
+  }
+
+  /* style menu lines */
+  .menu-button span,
+  .menu-button span::before,
+  .menu-button span::after {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: black;
+  }
+
+  /* position top menu line */
+  .menu-button span::before {
+    margin-top: -8px;
+  }
+
+  /* position bottom menu line */
+  .menu-button span::after {
+    margin-top: 8px;
+  }
+
+  /* active */
+  /* hide button span */
+  .menu-active span {
+    background-color: transparent;
+  }
+
+  /* default position for before & after pseudo elements (overlapping in the center of the button) */
+  .menu-active span::before,
+  .menu-active span::after {
+    margin-top: 0;
+  }
+
+  /* rotate top menu line */
+  .menu-active span::before {
+    transform: rotate(45deg);
+  }
+
+  /* rotate bottom menu line */
+  .menu-active span::after {
+    transform: rotate(-45deg);
+  }
+}
+
+/* --------------------------- */
+/* About */
+/* --------------------------- */
+
+/* add a background image & radial gradient which covers the section */
+
+#about {
+  background: linear-gradient(to bottom, rgb(237, 243, 245), rgba(234, 237, 245, 0.9)),
+    url('./cityscape.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* turn the container into a grid, with a minimum height of 80vh, then place content in the center */
+/* the about has a child div with a class on container, so there must be a space between 'about' & the classname '.container' */
+#about .container {
+  min-height: 80vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+/* use H2 font sizing for the title text */
+#about .title {
+  font-size: var(--fs-h2);
+}
+
+/* add a max-width and top/bottom padding to the intro text description */
+#about .desc {
+  max-width: 650px;
+  padding-block: 30px;
+}
+
+/* style the contact link to look like a button, use auto margins to control the width */
+#about .btn {
+  font-size: 20px;
+  color: white;
+  background-color: var(--primary);
+  border: solid var(--primary) 2px;
+  border-radius: var(--br-button);
+  padding: 8px 18px;
+  transition: background-color 0.2s;
+  margin-inline: auto;
+}
+
+/* style hover & focus states for the contact link */
+#about .btn:hover,
+#about .btn:focus {
+  color: var(--primary);
+  background-color: white;
+}
+
+/* --------------------------- */
+/* Portfolio */
+/* --------------------------- */
+
+/* add top/bottom padding, create a grid, add space between grid items */
+#portfolio .container {
+  padding-block: 90px;
+  display: grid;
+  gap: 60px;
+}
+
+/* set the width for portfolio images, use the image border-radius variable created in the root  */
+#portfolio img {
+  width: 100%;
+  border-radius: var(--br-img);
+}
+
+/* turn each portfolio item into a grid, with a gap */
+.portfolio-item {
+  display: grid;
+  gap: 30px;
+}
+
+/* Have the section heading span all columns, add a bottom margin */
+#portfolio h2 {
+  grid-column: -1 /1;
+}
+
+/* add top padding to the portfolio item desc */
+.portfolio-item .desc {
+  margin-top: 10px;
+}
+
+/* style tech list to look like inline tag bubbles, add top/bottom padding */
+.portfolio-item ul.tech {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding-block: 30px 16px;
+}
+
+.portfolio-item ul.tech li {
+  background-color: rgb(235, 240, 244);
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* style portfolio-item links */
+.portfolio-item a {
+  display: inline-block;
+  color: var(--primary);
+  padding: 6px 12px;
+  border: solid var(--primary) 2px;
+  border-radius: var(--br-button);
+  margin-block: 30px 20px;
+  transition: background-color 0.2s;
+}
+
+/* style hover & focus states for portfolio-item links */
+.portfolio-item a:hover,
+.portfolio-item a:focus {
+  color: white;
+  background-color: var(--primary);
+}
+
+/* create a breakpoint at 44rem where the .portfolio-item switches from 1 column to 2 columns & gap increases */
+@media (min-width: 44rem) {
+  .portfolio-item {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px;
+  }
+}
+
+/* create a breakpoint at 64rem where the .portfolio-item switches back to one column & the portfolio grid switches from 1 column to 3 columns */
+@media (min-width: 64rem) {
+  #portfolio .container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .portfolio-item {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+}
+
+/* Test out grid-columns */
+/* .project-item:first-of-type {
+  grid-column: 1 / span 2;
+} */
+
+/* --------------------------- */
+/* Footer */
+/* --------------------------- */
+
+/* turn the footer into a flex box, with content at opposite ends of the container */
+footer {
+  background-color: rgb(235, 240, 244);
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 50px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* style footer links */
+footer a {
+  color: black;
+}
+
+/* style hover & focus states for footer links */
+footer a:hover,
+footer a:focus {
+  color: var(--primary);
+}
